@@ -1,6 +1,5 @@
 //引入useStore
 import useStore from "@/store/index.ts";
-import { useStoreWithEqualityFn } from "zustand/traditional";
 
 const Home = () => {
   //在需要的组件中 调用useStore
@@ -27,10 +26,23 @@ const Home = () => {
         <button onClick={() => stepBears(5)}>step bears 5</button>
       </div>
       <div>
-        <button onClick={()=>asyncIncrementBears}>async 1s add bears</button>
+        <button onClick={asyncIncrementBears}>async 1s add bears</button>
       </div>
+      <Fish></Fish>
     </div>
   );
 };
 
 export default Home;
+
+const Fish = () => {
+  const fishState = useStore((state) => state);
+  return (
+    <div>
+      <h2>fish count: {fishState.fish}</h2>
+      <div>
+        <button onClick={fishState.incrementFish}>increment fish</button>
+      </div>
+    </div>
+  );
+};

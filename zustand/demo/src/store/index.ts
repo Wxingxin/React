@@ -10,11 +10,20 @@ const useStore = create<bearsType>()((set, get) => {
     incrementBears: () => set((pre) => ({ bears: pre.bears + 1 })),
     resetBears: () => set({ bears: 9 }),
     stepBears: (step = 1) => set((pre) => ({ bears: (pre.bears += step) })),
-    asyncIncrementBears:() => {
+    asyncIncrementBears: () => {
       setTimeout(() => {
-        get().incrementBears()
+        get().incrementBears();
       }, 1000);
-    }
+    },
+    //fish
+    fish: 88,
+    incrementFish: () => set((pre) => ({ fish: pre.fish + 1 })),
+    resetFish: () => set({ fish: 88 }),
+    asyncIncremenFish: () => {
+      setTimeout(() => {
+        get().incrementFish();
+      }, 1000);
+    },
   };
 });
 
