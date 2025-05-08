@@ -1,15 +1,33 @@
 /// <reference types="vite/client" />
 
-type bearsType = {
+import type bearsUseStore from "./store/bearsStore";
+
+// type bearsType = {
+//   bears: number;
+//   BearsIs88: () => void;
+//   incrementBears: () => void;
+//   resetBears: () => void;
+//   stepBears: (step?) => void;
+//   asyncIncrementBears: () => void;
+//   //fish
+//   fish: number;
+//   incrementFish: () => void;
+//   resetFish: () => void;
+//   asyncIncrementFish: () => void;
+// };
+
+type bearsUseStoreType = {
   bears: number;
   BearsIs88: () => void;
   incrementBears: () => void;
   resetBears: () => void;
   stepBears: (step?) => void;
   asyncIncrementBears: () => void;
-  //fish
+};
+
+type fishUseStoreType = {
   fish: number;
   incrementFish: () => void;
   resetFish: () => void;
   asyncIncrementFish: () => void;
-};
+}
