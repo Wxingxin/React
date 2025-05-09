@@ -13,5 +13,7 @@ const store = configureStore({
   }
 })
 
+//新增
+
 //export store
 export default store
