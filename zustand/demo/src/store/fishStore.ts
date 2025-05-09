@@ -16,7 +16,8 @@ const fishUseStore = create<fishUseStoreType>()(
             get().incrementFish();
           }, 1000);
         },
-      }),
+      }
+    ),
       {
         name: "fish-session",
         storage: createJSONStorage(() => sessionStorage),
