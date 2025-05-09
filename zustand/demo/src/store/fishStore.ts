@@ -1,14 +1,13 @@
-//导入zustand的create 函数
 import { create } from "zustand";
 import type { fishUseStoreType } from "@/vite-env";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist, createJSONStorage, devtools } from "zustand/middleware";
+// import { immer } from "zustand/middleware/immer";
+//
 
-//使用create函数创建useStore 的 Hook
 const fishUseStore = create<fishUseStoreType>()(
-  persist(
-    (set, get) => {
-      //return 中可以存放全局共享的 数据 和 方法
-      return {
+  devtools(
+    persist(
+      (set, get) => ({
         fish: 88,
         incrementFish: () => set((pre) => ({ fish: pre.fish + 1 })),
         resetFish: () => set({ fish: 88 }),
@@ -17,14 +16,16 @@ const fishUseStore = create<fishUseStoreType>()(
             get().incrementFish();
           }, 1000);
         },
-      };
-    },
+      }),
+      {
+        name: "fish-session",
+        storage: createJSONStorage(() => sessionStorage),
+      }
+    ),
     {
-      name: "fish-session",
-      storage: createJSONStorage(() => sessionStorage),
+      name: "fish-devtools",
     }
   )
 );
 
-//导出useStore
 export default fishUseStore;
