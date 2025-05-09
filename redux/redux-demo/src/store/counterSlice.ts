@@ -8,7 +8,7 @@ const counterSlice = createSlice({
   name: 'counter',
   // 初始的 state 数据
   initialState: {
-    value: 0
+    value: 9
   },
   // reducers 函数，用来描述如何更新 state 数据
   reducers: {}
