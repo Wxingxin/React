@@ -20,3 +20,5 @@ const change_addressAction = (address) => {
 
 store.dispatch(change_nameAction('wei'))
 store.dispatch(change_addressAction('nn'))
+unSubscribe()
+store.dispatch(change_nameAction('gaolixin'))
