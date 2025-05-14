@@ -1,12 +1,41 @@
-import type { CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
+import store, { increment, decrement } from "../store/index";
+import type { CounterState } from "../store/index";
 
 const Profile = () => {
+  const [count, setCount] = useState<CounterState["count"]>(
+    store.getState().count
+  );
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setCount(store.getState().count);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const handleIncrement = () => {
+    store.dispatch(increment());
+  };
+
+  const handleDecrement = () => {
+    store.dispatch(decrement());
+  };
+
   return (
-    <div style={style}>
-      <h2>Profile Pages</h2>
+    <div className="counter" style={style}>
+      <h1>Simple Counter (No Redux-React)</h1>
+      <div className="display">Count: {count}</div>
+      <div className="controls">
+        <button onClick={handleIncrement}>Increment</button>
+        <button onClick={handleDecrement}>Decrement</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 const style: CSSProperties = {
   border: "2px solid red",
@@ -15,4 +44,4 @@ const style: CSSProperties = {
   float: "left",
 };
 
-export default Profile
+export default Profile;

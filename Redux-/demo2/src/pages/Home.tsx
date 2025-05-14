@@ -1,22 +1,15 @@
-import { useState, useEffect } from 'react';
-import store from '../store';
-import {
-  numberClicked,
-  operatorClicked,
-  equalsClicked,
-  clearClicked,
-  // CalculatorState
-} from '../store/index.ts';
-import { CalculatorState}  from '../store/index.ts'; // 导入 State 类型
+import React, { useState, useEffect, type CSSProperties } from 'react';
+import store, { increment, decrement } from '../store/index';
+import type { CounterState } from '../store/index';
 
-interface CalculatorProps {} // 当前组件没有 props，可以保持为空
+interface CounterProps {}
 
-const Calculator: React.FC<CalculatorProps> = () => {
-  const [displayValue, setDisplayValue] = useState<CalculatorState['display']>(store.getState().display);
+const Home: React.FC<CounterProps> = () => {
+  const [count, setCount] = useState<CounterState['count']>(store.getState().count);
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
-      setDisplayValue(store.getState().display);
+      setCount(store.getState().count);
     });
 
     return () => {
@@ -24,46 +17,32 @@ const Calculator: React.FC<CalculatorProps> = () => {
     };
   }, []);
 
-  const handleNumberClick = (number: string) => {
-    store.dispatch(numberClicked(number));
+  const handleIncrement = () => {
+    store.dispatch(increment());
   };
 
-  const handleOperatorClick = (operator: string) => {
-    store.dispatch(operatorClicked(operator));
-  };
-
-  const handleEqualsClick = () => {
-    store.dispatch(equalsClicked());
-  };
-
-  const handleClearClick = () => {
-    store.dispatch(clearClicked());
+  const handleDecrement = () => {
+    store.dispatch(decrement());
   };
 
   return (
-    <div className="calculator">
-      <div className="display">{displayValue}</div>
-      <div className="buttons">
-        <button onClick={handleClearClick}>C</button>
-        <button onClick={() => handleOperatorClick('/')}>/</button>
-        <button onClick={() => handleOperatorClick('*')}>*</button>
-        <button onClick={() => handleNumberClick('7')}>7</button>
-        <button onClick={() => handleNumberClick('8')}>8</button>
-        <button onClick={() => handleNumberClick('9')}>9</button>
-        <button onClick={() => handleOperatorClick('-')}>-</button>
-        <button onClick={() => handleNumberClick('4')}>4</button>
-        <button onClick={() => handleNumberClick('5')}>5</button>
-        <button onClick={() => handleNumberClick('6')}>6</button>
-        <button onClick={() => handleOperatorClick('+')}>+</button>
-        <button onClick={() => handleNumberClick('1')}>1</button>
-        <button onClick={() => handleNumberClick('2')}>2</button>
-        <button onClick={() => handleNumberClick('3')}>3</button>
-        <button className="equals" onClick={handleEqualsClick}>=</button>
-        <button className="zero" onClick={() => handleNumberClick('0')}>0</button>
-        <button onClick={() => handleNumberClick('.')}>.</button>
+    <div className="counter" style={style}>
+      <h1>Simple Counter (No Redux-React)</h1>
+      <div className="display">Count: {count}</div>
+      <div className="controls">
+        <button onClick={handleIncrement}>Increment</button>
+        <button onClick={handleDecrement}>Decrement</button>
       </div>
     </div>
   );
 };
 
-export default Calculator;
+const style: CSSProperties = {
+  border: "2px solid red",
+  width: "300px",
+  height: "300px",
+  float: "left",
+};
+
+
+export default Home;
