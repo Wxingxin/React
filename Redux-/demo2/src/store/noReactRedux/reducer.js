@@ -1,8 +1,9 @@
-import * as actionType from './constants'
-
+import * as actionType from "./constants";
 
 const initialState = {
   count: 6,
+  banners: [],
+  recommends: [],
 };
 
 const reducer = (state = initialState, action) => {

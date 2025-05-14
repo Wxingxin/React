@@ -47,11 +47,11 @@ const NoCounter_2 = () => {
     };
   }, []); // 空依赖数组，effect 只在挂载和卸载时运行
 
-  const handleIncrement = () => {
-    store.dispatch(increment());
+  const handleIncrement = (num) => {
+    store.dispatch(increment(num));
   };
-  const handleDecrement = () => {
-    store.dispatch(decrement());
+  const handleDecrement = (num) => {
+    store.dispatch(decrement(num));
   };
 
   return (
@@ -59,8 +59,8 @@ const NoCounter_2 = () => {
       <h2>NoCounter_2</h2>
       <div>count: {count}</div> {/* 这里期望 count 是一个数字 */}
       <div>
-        <button onClick={handleIncrement}>increment 1</button>
-        <button onClick={handleDecrement}>decrement 1</button>
+        <button onClick={() => handleIncrement(1)}>increment 1</button>
+        <button onClick={() => handleDecrement(1)}>decrement 1</button>
       </div>
     </div>
   );
