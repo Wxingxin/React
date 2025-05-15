@@ -2,6 +2,7 @@ import NoCounter_1 from "./components/NoCounter_1";
 import NoCounter_2 from "./components/NoCounter_2";
 import UseReactRedux_1 from "./components/UseReactRedux_1";
 import UseReactRedux_2 from "./components/UseReactRedux_2";
+import UseFetch from "./components/UseFetch";
 
 const App = () => {
   return (
@@ -47,6 +48,16 @@ const App = () => {
         }}
       >
         <UseReactRedux_2 />
+      </div>
+      <div
+        style={{
+          border: "5px solid #8e44ad",
+          width: "45vw",
+          height: "auto",
+          float: "left",
+        }}
+      >
+        <UseFetch />
       </div>
     </div>
   );

@@ -6,7 +6,8 @@ import {
   changeRecommendsAction,
 } from "../store/noReactRedux/actionCreators.js";
 
-const UseReactRedux_1 = ({
+
+const UseFetch = ({
   count,
   banners,
   recommends,
@@ -15,13 +16,8 @@ const UseReactRedux_1 = ({
 }) => {
   return (
     <div>
-      <h2>UseReactRedux_1</h2>
-      <div>count: {count}</div>
-      <div>
-        <button onClick={increment}>increment 3</button>
-        <button onClick={decrement}>decrement 3</button>
-      </div>
-      <div>
+      <h2>UseFetch </h2>
+       <div>
         <h4>轮播数据</h4>
         <ul>
           {/* bannerItem 本身就是title 不需要再 bannersItem.title */}
@@ -39,10 +35,11 @@ const UseReactRedux_1 = ({
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-// 映射state到props
+
+// 使用connect高阶组件连接组件
 const mapStateToProps = (state) => ({
   count: state.count,
   banners: state.banners,
@@ -57,4 +54,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // 使用connect高阶组件连接组件
-export default connect(mapStateToProps, mapDispatchToProps)(UseReactRedux_1);
+export default connect(mapStateToProps, mapDispatchToProps)(UseFetch)
